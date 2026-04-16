@@ -72,6 +72,69 @@
             box-shadow: 6px 6px 0px #000;
         }
 
+        /* Main site logo style sync */
+        .main-logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .main-logo-orb {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 9999px;
+            background:
+                radial-gradient(circle at 30% 30%, #ffd2ad, transparent 35%),
+                radial-gradient(circle at 72% 74%, #ff965e, transparent 38%),
+                linear-gradient(145deg, #5b2744 0%, #1b1020 60%, #0f0a14 100%);
+            box-shadow: 0 0 22px rgba(242, 157, 98, 0.28);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        .main-logo-orb::before {
+            content: "";
+            position: absolute;
+            inset: 8px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .main-logo-orb::after {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 17px;
+            width: 30px;
+            height: 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 215, 189, 0.75);
+        }
+        .main-logo-dot {
+            position: absolute;
+            right: 8px;
+            top: 9px;
+            width: 8px;
+            height: 8px;
+            border-radius: 9999px;
+            background: #ffd7b8;
+            filter: blur(1px);
+        }
+        .main-logo-text {
+            line-height: 1.1;
+        }
+        .main-logo-title {
+            font-weight: 700;
+            letter-spacing: .02em;
+            text-transform: none;
+        }
+        .main-logo-sub {
+            margin-top: 4px;
+            font-size: 11px;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: rgba(0,0,0,0.55);
+            font-weight: 600;
+        }
+
         .sticker-badge {
             background: var(--jp-yellow);
             color: #000;
@@ -345,18 +408,14 @@
     <nav class="nav-container px-6 py-4 text-black">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-4 text-left">
-                <!-- REDESIGNED VECTOR LOGO -->
-                <div class="logo-box w-12 h-12">
-                    <svg viewBox="0 0 100 100" class="w-full h-full">
-                        <circle cx="50" cy="50" r="38" fill="none" stroke="white" stroke-width="6" />
-                        <path d="M75 25 L95 25 L85 45 Z" fill="#1e3a8a" stroke="white" stroke-width="2" />
-                        <path d="M5 55 L25 75 L5 75 Z" fill="#1e3a8a" stroke="white" stroke-width="2" />
-                        <text x="50" y="60" font-family="Inter" font-weight="900" font-size="36" text-anchor="middle" fill="white">G</text>
-                    </svg>
-                </div>
-                <div class="leading-none text-left">
-                    <span class="font-black text-xl block tracking-tighter uppercase">GLOBAL INTERNET</span>
-                    <span class="text-[8px] font-bold text-red-600 tracking-[0.2em] uppercase" data-i18n="nav-sub">Japan Connectivity Experts</span>
+                <div class="main-logo-wrap">
+                    <div class="main-logo-orb">
+                        <span class="main-logo-dot"></span>
+                    </div>
+                    <div class="main-logo-text">
+                        <div class="main-logo-title">Global Internet 5G</div>
+                        <div class="main-logo-sub">Global Connection for Japan</div>
+                    </div>
                 </div>
             </div>
 
@@ -602,15 +661,15 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
                 <div class="md:col-span-1">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="logo-box w-10 h-10">
-                            <svg viewBox="0 0 100 100" class="w-full h-full">
-                                <circle cx="50" cy="50" r="38" fill="none" stroke="white" stroke-width="6" />
-                                <path d="M75 25 L95 25 L85 45 Z" fill="#1e3a8a" stroke="white" stroke-width="2" />
-                                <path d="M5 55 L25 75 L5 75 Z" fill="#1e3a8a" stroke="white" stroke-width="2" />
-                                <text x="50" y="60" font-family="Inter" font-weight="900" font-size="36" text-anchor="middle" fill="white">G</text>
-                            </svg>
+                        <div class="main-logo-wrap">
+                            <div class="main-logo-orb">
+                                <span class="main-logo-dot"></span>
+                            </div>
+                            <div class="main-logo-text">
+                                <div class="main-logo-title">Global Internet 5G</div>
+                                <div class="main-logo-sub">Global Connection for Japan</div>
+                            </div>
                         </div>
-                        <span class="font-black text-xl block tracking-tighter uppercase">GLOBAL INTERNET</span>
                     </div>
                 </div>
                 <div>
