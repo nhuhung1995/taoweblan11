@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Global Internet - #1 Japan Connectivity for Expats</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+        
+        :root {
+            --jp-blue: #005bac;
+            --jp-red: #d70035;
+            --jp-yellow: #ffcc00;
+            --jp-bg: #ffffff;
+            --jp-gray: #f2f2f7;
+            --jp-black: #1a1a1a;
+            --logo-blue: #6ab9f2;
+        }
+
+        body {
+            background-color: var(--jp-bg);
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            scroll-behavior: smooth;
+            color: var(--jp-black);
+            line-height: 1.5;
+        }
+
+        /* Japanese Impact Elements */
+        .jp-ticker {
+            background: var(--jp-red);
+            color: white;
+            font-weight: 900;
+            font-size: 11px;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 2px solid #000;
+        }
+
+        .animate-marquee {
+            animation: marquee 40s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .nav-container {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 3px solid var(--jp-black);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* CUSTOM REDESIGNED LOGO STYLE */
+        .logo-box {
+            background: var(--logo-blue);
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            border-radius: 8px;
+        }
+        .logo-box:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 6px 6px 0px #000;
+        }
+
+        .sticker-badge {
+            background: var(--jp-yellow);
+            color: #000;
+            padding: 5px 15px;
+            font-weight: 900;
+            font-size: 12px;
+            transform: rotate(-2deg);
+            display: inline-block;
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0px #000;
+        }
+
+        .card-jp {
+            background: white;
+            border: 4px solid var(--jp-black);
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+
+        /* Carousel 5 Slides */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 540px;
+        }
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            height: 100%;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+        }
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .carousel-dot.active {
+            background: var(--jp-red);
+            width: 25px;
+            border-radius: 10px;
+        }
+
+        .price-tag {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            color: var(--jp-red);
+        }
+
+        .btn-primary-jp {
+            background: var(--jp-blue);
+            color: white;
+            font-weight: 900;
+            padding: 18px;
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            text-align: center;
+            display: block;
+            transition: all 0.1s;
+        }
+        .btn-primary-jp:active {
+            box-shadow: 0px 0px 0px #000;
+            transform: translate(4px, 4px);
+        }
+
+        /* Plan Selection States */
+        .plan-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+        .plan-section.show {
+            display: block !important;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .matrix-card.active {
+            background: var(--jp-black) !important;
+            color: white !important;
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #000;
+        }
+        .matrix-card.active i, .matrix-card.active p, .matrix-card.active h4 {
+            color: white !important;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            border: 2px solid var(--jp-black);
+            margin-bottom: 15px;
+            background: white;
+            transition: all 0.2s ease;
+        }
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #fafafa;
+            color: #555;
+            font-size: 14px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 400px;
+            padding: 0 20px 20px;
+            border-top: 1px solid #eee;
+        }
+
+        /* AI Assistant */
+        #ai-assistant {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 360px;
+            max-width: calc(100vw - 40px);
+            height: 520px;
+            background: white;
+            z-index: 1100;
+            border: 3px solid #000;
+            border-radius: 4px;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+        }
+        #chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f8f9fa;
+        }
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            border: 2px solid #eee;
+            border-radius: 12px;
+        }
+        .ai-message { background: #fff; align-self: flex-start; border-bottom-left-radius: 0; }
+        .user-message { background: var(--jp-blue); color: white; align-self: flex-end; border-bottom-right-radius: 0; border-color: var(--jp-blue); }
+
+        .lang-active { background: var(--jp-blue) !important; color: white !important; border-color: var(--jp-blue) !important; }
+        .lang-btn { background: #fff; border: 1px solid #000; font-weight: 900; font-size: 10px; padding: 6px 12px; transition: all 0.2s; }
+        
+        .loading-dots:after {
+            content: ' .';
+            animation: dots 1s steps(5, end) infinite;
+        }
+        @keyframes dots {
+            0%, 20% { color: rgba(0,0,0,0); text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0); }
+            40% { color: #000; text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0); }
+            60% { text-shadow: .25em 0 0 #000, .5em 0 0 rgba(0,0,0,0); }
+            80%, 100% { text-shadow: .25em 0 0 #000, .5em 0 0 #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Ticker -->
+    <div class="jp-ticker">
+        <div id="ticker-text" class="animate-marquee" data-i18n="ticker">
+            📢 CAMPAIGN 2026: 0 YEN INITIAL COST • 10,000 YEN CASHBACK • NO CREDIT CARD REQUIRED • SUPPORT IN ENGLISH, JAPANESE & VIETNAMESE 24/7 📢
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-container px-6 py-4 text-black">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4 text-left">
+                <!-- REDESIGNED VECTOR LOGO -->
+                <div class="logo-box w-12 h-12">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <circle cx="50" cy="50" r="38" fill="none" stroke="white" stroke-width="6" />
+                        <path d="M75 25 L95 25 L85 45 Z" fill="#1e3a8a" stroke="white" stroke-width="2" />
+                        <path d="M5 55 L25 75 L5 75 Z" fill="#1e3a8a" stroke="white" stroke-width="2" />
+                        <text x="50" y="60" font-family="Inter" font-weight="900" font-size="36" text-anchor="middle" fill="white">G</text>
+                    </svg>
+                </div>
+                <div class="leading-none text-left">
+                    <span class="font-black text-xl block tracking-tighter uppercase">GLOBAL INTERNET</span>
+                    <span class="text-[8px] font-bold text-red-600 tracking-[0.2em] uppercase" data-i18n="nav-sub">Japan Connectivity Experts</span>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex gap-8 text-[11px] font-black uppercase">
+                <a href="#matrix" class="hover:text-blue-600 transition" data-i18n="nav-selection">Selection</a>
+                <a href="#faq-section" class="hover:text-blue-600" data-i18n="nav-faq">FAQ</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="flex gap-1">
+                    <button onclick="setLang('en')" id="btn-en" class="lang-btn lang-active">EN</button>
+                    <button onclick="setLang('jp')" id="btn-jp" class="lang-btn">JP</button>
+                    <button onclick="setLang('vi')" id="btn-vi" class="lang-btn">VN</button>
+                </div>
+                <button onclick="openMess()" class="bg-red-600 text-white px-6 py-2.5 font-black text-[10px] uppercase border-2 border-black shadow-[4px_4px_0px_#000] active:translate-y-1 transition-all" data-i18n="btn-register">
+                    Register
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="py-16 lg:py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center text-left text-black">
+            <div class="lg:col-span-7">
+                <div class="sticker-badge mb-6 uppercase" data-i18n="hero-badge">#1 Expat Choice in Japan</div>
+                <h1 id="hero-title" class="text-5xl md:text-8xl font-black leading-none mb-8 tracking-tighter uppercase text-slate-900" data-i18n="hero-title">
+                    THE SMART <br>
+                    <span class="text-blue-600">WAY TO CONNECT</span><br>
+                    IN JAPAN
+                </h1>
+                <p class="text-gray-600 font-bold text-lg mb-10 leading-relaxed max-w-xl" data-i18n="hero-desc">
+                    Skip the complex Japanese contracts. Get 5G internet with your Residence Card. Vietnamese, English & Japanese support available.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="toggleAI('✨ Recommend a plan for me based on my needs')" class="btn-primary-jp px-10 uppercase text-xs">✨ AI Plan Finder</button>
+                    <button onclick="document.getElementById('matrix').scrollIntoView()" class="border-2 border-black px-10 py-4 font-black uppercase text-xs bg-white hover:bg-gray-100 shadow-[4px_4px_0px_#000]" data-i18n="btn-start">Start Selection</button>
+                </div>
+            </div>
+
+            <!-- Carousel -->
+            <div class="lg:col-span-5 relative">
+                <div class="card-jp carousel-container bg-white">
+                    <div id="hero-carousel" class="carousel-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="carousel-slide bg-white text-black text-left">
+                            <div class="sticker-badge absolute top-10 right-10">EST. 2018</div>
+                            <h3 class="text-4xl font-black mb-6 italic uppercase leading-none text-left" data-i18n="slide1-h">Who are <br><span class="text-blue-600">we?</span></h3>
+                            <p class="text-sm font-bold text-gray-500 uppercase leading-relaxed mb-8 text-left" data-i18n="slide1-p">Specialized connectivity partner for the international community in Japan. Reliable and simple.</p>
+                            <div class="bg-gray-50 p-6 border-2 border-black text-left text-black"><p class="text-[10px] font-black uppercase mb-2" data-i18n="slide1-trusted">Trusted by</p><p class="text-2xl font-black tracking-tighter" data-i18n="slide1-count">15,000+ Internationals</p></div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="carousel-slide bg-blue-50 text-black text-left">
+                            <h3 class="text-4xl font-black mb-6 italic uppercase leading-none text-left" data-i18n="slide2-h">Language <br><span class="text-red-600">Support</span></h3>
+                            <p class="text-sm font-bold text-gray-600 uppercase leading-relaxed mb-8 text-left" data-i18n="slide2-p">Chat with our fluent staff in Vietnamese, Japanese or English anytime. No translation apps needed.</p>
+                            <button onclick="openMess()" class="btn-primary-jp w-full uppercase text-xs" data-i18n="btn-chat-vn">Chat with Staff</button>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="carousel-slide bg-black text-white text-left">
+                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-6"><i class="fa-solid fa-robot text-2xl text-white"></i></div>
+                            <h3 class="text-4xl font-black mb-6 italic uppercase leading-none text-left" data-i18n="slide3-h">AI Smart <br><span class="text-blue-500">Expert</span></h3>
+                            <p class="text-sm font-bold text-gray-400 uppercase leading-relaxed mb-8 text-left" data-i18n="slide3-p">Our AI ✨ system finds the perfect data plan for you in seconds.</p>
+                            <button onclick="toggleAI()" class="bg-white text-black py-4 font-black uppercase text-xs" data-i18n="btn-ai">✨ Consult with AI</button>
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="carousel-slide bg-white text-black text-left">
+                            <div class="flex text-yellow-400 gap-1 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <h3 class="text-3xl font-black mb-6 italic uppercase" data-i18n="slide4-h">Expat Community</h3>
+                            <div class="space-y-4 mb-8 text-left text-black"><div class="border-l-4 border-black pl-4"><p class="text-xs font-bold uppercase italic" data-i18n="review1">"The best and only company to accept me with just my residence card!"</p></div></div>
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="carousel-slide bg-red-600 text-white text-left">
+                            <h3 class="text-4xl font-black mb-6 italic uppercase leading-tight" data-i18n="slide5-h">Have it <br>Your Way</h3>
+                            <p class="text-xs font-bold mb-8 opacity-90 uppercase" data-i18n="hero-badge">Tailored solutions for your Japan life.</p>
+                            <button onclick="document.getElementById('matrix').scrollIntoView()" class="bg-white text-black py-5 font-black uppercase text-xs shadow-[4px_4px_0px_#000]">Explore My Plan</button>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-6 left-0 right-0 flex justify-center gap-3 z-20">
+                        <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(1)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(2)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(3)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(4)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Selection Matrix -->
+    <section id="matrix" class="py-24 px-6 bg-white border-y-4 border-black text-left text-black">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-black uppercase italic tracking-tighter mb-16" data-i18n="matrix-h">WHICH PLAN FITS YOUR LIFE?</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <div id="card-sim" onclick="togglePlanSection('sim-plans', this)" class="matrix-card card-jp p-8 text-center cursor-pointer border-blue-600 hover:bg-blue-50 transition-all group">
+                    <i class="fa-solid fa-mobile-screen-button text-3xl mb-4 group-hover:scale-110"></i>
+                    <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-sim">SIM ONLY</h4>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase" data-i18n="matrix-sim-p">Solo Expats & Students</p>
+                </div>
+                <div id="card-pocket" onclick="togglePlanSection('pocket-wifi', this)" class="matrix-card card-jp p-8 text-center cursor-pointer border-red-600 hover:bg-red-50 transition-all group">
+                    <i class="fa-solid fa-wifi text-3xl mb-4 group-hover:scale-110"></i>
+                    <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-pocket">POCKET WIFI</h4>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase" data-i18n="matrix-pocket-p">Laptops & Travel Use</p>
+                </div>
+                <div id="card-home" onclick="togglePlanSection('home-wifi', this)" class="matrix-card card-jp p-8 text-center cursor-pointer border-yellow-500 hover:bg-yellow-50 transition-all group">
+                    <i class="fa-solid fa-house-signal text-3xl mb-4 group-hover:scale-110"></i>
+                    <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-home">HOME WIFI</h4>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase" data-i18n="matrix-home-p">Plug & Play (L11-L13)</p>
+                </div>
+                <div id="card-fiber" onclick="togglePlanSection('fiber-wifi', this)" class="matrix-card card-jp p-8 text-center cursor-pointer border-black hover:bg-gray-100 transition-all group">
+                    <i class="fa-solid fa-bolt-lightning text-3xl mb-4 group-hover:scale-110"></i>
+                    <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-fiber">FIBER WIFI</h4>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase" data-i18n="matrix-fiber-p">Pro Gaming & Family</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Plan Sections -->
+    <section id="sim-plans" class="plan-section py-24 px-6 bg-white text-center text-black">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-black uppercase italic tracking-tighter mb-16" data-i18n="sim-h">01. SIM SELECTION</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 text-left">
+                <div class="space-y-6">
+                    <div class="bg-gray-100 p-4 border-2 border-black inline-block font-black text-[10px] uppercase" data-i18n="sim-cat-budget">Gói 50GB tiết kiệm</div>
+                    <div class="grid gap-6">
+                        <div class="card-jp p-8 flex justify-between items-center border-l-8 border-pink-600 text-black">
+                            <div><h4 class="font-black text-xl uppercase italic">50GB RAKUTEN</h4><p class="text-3xl price-tag mt-4" data-i18n="price-sim-50-rkt">¥2,280</p></div>
+                            <button onclick="openMess()" class="bg-black text-white px-6 py-3 font-black text-[10px] uppercase">Select</button>
+                        </div>
+                        <div class="card-jp p-8 flex justify-between items-center border-l-8 border-slate-400 text-black">
+                            <div><h4 class="font-black text-xl uppercase italic">50GB SOFTBANK</h4><p class="text-3xl price-tag mt-4" data-i18n="price-sim-50-sb">¥2,780</p></div>
+                            <button onclick="openMess()" class="bg-black text-white px-6 py-3 font-black text-[10px] uppercase">Select</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-blue-600 text-white p-4 border-2 border-black inline-block font-black text-[10px] uppercase shadow-[4px_4px_0px_#000]" data-i18n="sim-cat-power">Gói 100GB Đánh Trực Tiếp</div>
+                    <div class="grid gap-6">
+                        <div class="card-jp p-8 flex justify-between items-center border-l-8 border-pink-700 bg-pink-50/20 text-black">
+                            <div><h4 class="font-black text-xl uppercase italic text-pink-700">100GB RAKUTEN</h4><p class="text-4xl price-tag mt-4" data-i18n="price-sim-100-rkt">¥2,680</p></div>
+                            <button onclick="openMess()" class="btn-primary-jp px-8 py-3 text-[10px]">GET 100GB</button>
+                        </div>
+                        <div class="card-jp p-8 flex justify-between items-center border-l-8 border-blue-600 bg-blue-50/20 text-black">
+                            <div><h4 class="font-black text-xl uppercase italic text-blue-600">100GB SOFTBANK</h4><p class="text-4xl price-tag mt-4" data-i18n="price-sim-100-sb">¥3,280</p></div>
+                            <button onclick="openMess()" class="btn-primary-jp px-8 py-3 text-[10px]">GET 100GB</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-[10px] font-bold text-gray-400 mt-10 uppercase italic" data-i18n="tax-note">* All prices exclude 10% consumption tax.</p>
+        </div>
+    </section>
+
+    <section id="pocket-wifi" class="plan-section py-24 px-6 bg-slate-50 border-y-2 border-black text-center text-black">
+        <div class="max-w-7xl mx-auto text-left">
+            <h2 class="text-4xl font-black uppercase italic tracking-tighter mb-16 text-center" data-i18n="pocket-h">02. POCKET WIFI 5G</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-black">
+                <div class="card-jp p-10 bg-white">
+                    <h3 class="text-3xl font-black mb-2 uppercase italic text-left">SPEED WIFI X12</h3>
+                    <p class="text-sm font-bold text-gray-400 mb-8 uppercase italic text-left" data-i18n="pocket-x12-p">Peak 2.7Gbps • High Stability</p>
+                    <p class="text-5xl price-tag mt-8 text-left" data-i18n="price-universal-device">¥4,480<span class="text-sm text-gray-400">/mo</span></p>
+                    <button onclick="openMess()" class="btn-primary-jp w-full mt-10">Order X12 Now</button>
+                </div>
+                <div class="card-jp p-10 bg-white border-2 border-blue-600">
+                    <h3 class="text-3xl font-black mb-2 uppercase italic text-blue-900 text-left">GALAXY 5G MOBILE</h3>
+                    <p class="text-sm font-bold text-gray-400 mb-8 uppercase italic text-left" data-i18n="pocket-galaxy-p">Touchscreen • 5000mAh Battery</p>
+                    <p class="text-5xl price-tag mt-8 text-left" data-i18n="price-universal-device">¥4,480<span class="text-sm text-gray-400">/mo</span></p>
+                    <button onclick="openMess()" class="btn-primary-jp w-full mt-10">Order Galaxy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="home-wifi" class="plan-section py-24 px-6 bg-white text-center text-black">
+        <div class="max-w-7xl mx-auto text-left text-black">
+            <h2 class="text-4xl font-black uppercase italic tracking-tighter mb-16 text-center" data-i18n="home-h">03. HOME WIFI (PLUG & PLAY)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-black">
+                <div class="card-jp p-8 border-2 border-black">
+                    <div class="sticker-badge mb-4" data-i18n="home-basic">BASIC</div><h4 class="text-2xl font-black mb-1 uppercase text-left">HOME L11</h4><p class="text-4xl price-tag mb-8 text-left" data-i18n="price-universal-device">¥4,480</p><button onclick="openMess()" class="w-full py-4 border-2 border-black font-black uppercase text-[10px]">Select L11</button>
+                </div>
+                <div class="card-jp p-8 border-l-8 border-blue-500 shadow-lg border-2 border-black">
+                    <div class="sticker-badge mb-4 bg-blue-600 text-white" data-i18n="home-standard">STANDARD</div><h4 class="text-2xl font-black mb-1 uppercase text-left">HOME L12</h4><p class="text-4xl price-tag mb-8 text-blue-600 text-left" data-i18n="price-universal-device">¥4,480</p><button onclick="openMess()" class="btn-primary-jp w-full text-[10px]">Select L12</button>
+                </div>
+                <div class="card-jp p-8 border-red-600 border-4 border-black relative">
+                    <div class="absolute -top-4 -right-4 bg-red-600 text-white px-4 py-1 font-black text-[10px] rotate-12" data-i18n="home-new">NEW</div>
+                    <div class="sticker-badge mb-4 bg-red-600 text-white" data-i18n="home-premium">PREMIUM</div><h4 class="text-2xl font-black mb-1 uppercase text-left text-black">HOME L13 5G</h4><p class="text-4xl price-tag mb-8 text-red-600 text-left" data-i18n="price-universal-device">¥4,480</p><button onclick="openMess()" class="btn-primary-jp w-full text-[10px] bg-red-600 text-white">GET L13 NOW</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fiber-wifi" class="plan-section py-24 px-6 bg-black text-white text-center">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-5xl md:text-7xl font-black uppercase italic tracking-tighter mb-8" data-i18n="fiber-h">FIBER ULTRA FAST</h2>
+            <p class="text-lg font-bold text-gray-400 mb-12 uppercase leading-relaxed max-w-2xl mx-auto" data-i18n="fiber-p">1Gbps - 10Gbps Stable connection. No data limits.</p>
+            <div class="card-jp bg-white p-12 text-black text-left">
+                <h3 class="text-2xl font-black mb-6 uppercase italic text-left">NEED EXPERT ADVICE?</h3>
+                <p class="text-sm font-bold text-gray-500 mb-10 uppercase text-left" data-i18n="fiber-expert-p">Our Fiber team will check building eligibility for free!</p>
+                <button onclick="openMess()" class="btn-primary-jp px-12 uppercase text-xs">Chat for Free Consultation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq-section" class="py-24 px-6 bg-gray-50 border-t-4 border-black text-center text-black">
+        <div class="max-w-3xl mx-auto text-left">
+            <h2 class="text-4xl font-black mb-16 uppercase italic text-center" data-i18n="faq-h">FREQUENTLY ASKED QUESTIONS</h2>
+            <div id="faq-container" class="space-y-4 text-black"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-white border-t-4 border-black pt-20 pb-12 px-6 text-black text-black">
+        <div class="max-w-7xl mx-auto text-left text-black text-black">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="logo-box w-10 h-10">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <circle cx="50" cy="50" r="38" fill="none" stroke="white" stroke-width="6" />
+                                <path d="M75 25 L95 25 L85 45 Z" fill="#1e3a8a" stroke="white" stroke-width="2" />
+                                <path d="M5 55 L25 75 L5 75 Z" fill="#1e3a8a" stroke="white" stroke-width="2" />
+                                <text x="50" y="60" font-family="Inter" font-weight="900" font-size="36" text-anchor="middle" fill="white">G</text>
+                            </svg>
+                        </div>
+                        <span class="font-black text-xl block tracking-tighter uppercase">GLOBAL INTERNET</span>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-black text-xs uppercase mb-6 border-b-2 border-black inline-block" data-i18n="foot-support">Support</h5>
+                    <ul class="text-[10px] font-black space-y-4 uppercase text-gray-500">
+                        <li>Hotline: 048-950-6868</li>
+                        <li><a href="javascript:void(0)" onclick="openMess()" data-i18n="foot-mess-vn" class="hover:text-blue-600 transition">Messenger</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-black text-xs uppercase mb-6 border-b-2 border-black inline-block text-black" data-i18n="foot-legal">Legal Info</h5>
+                    <ul class="text-[10px] font-black space-y-4 uppercase text-gray-500 text-black">
+                        <li><a href="javascript:void(0)" onclick="openLegal('terms')" class="hover:text-blue-600 flex items-center gap-2"><span data-i18n="foot-terms">Contract Terms</span> <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i></a></li>
+                        <li><a href="javascript:void(0)" onclick="openLegal('privacy')" class="hover:text-blue-600 flex items-center gap-2"><span data-i18n="foot-privacy">Privacy Policy</span> <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i></a></li>
+                        <li><a href="javascript:void(0)" onclick="openLegal('act')" class="hover:text-blue-600 flex items-center gap-2"><span data-i18n="foot-act">Telecom Business Act</span> <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i></a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-black text-xs uppercase mb-6 border-b-2 border-black inline-block text-black" data-i18n="foot-social">Social</h5>
+                    <div class="flex gap-6 text-2xl">
+                        <a href="https://facebook.com/JapanSIMPocketWiFi" target="_blank" class="text-gray-400 hover:text-blue-600 transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.tiktok.com/@global_internet.jp" target="_blank" class="text-gray-400 hover:text-black transition"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/@GlobalInternet5G" target="_blank" class="text-gray-400 hover:text-red-600 transition"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pt-12 border-t border-gray-100 text-black">
+                <p id="footer-copy" class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.3em] leading-loose italic" data-i18n="foot-copy"></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LEGAL MODAL -->
+    <div id="legal-modal" style="display:none;" class="fixed inset-0 bg-black/80 z-[2000] p-6 flex items-center justify-center text-black text-black">
+        <div class="bg-white w-full max-w-2xl h-[80vh] border-4 border-black p-8 overflow-y-auto relative text-left">
+            <button onclick="document.getElementById('legal-modal').style.display='none'" class="absolute top-4 right-4 font-black text-2xl text-black">×</button>
+            <div id="legal-content" class="text-black"></div>
+        </div>
+    </div>
+
+    <!-- AI Assistant -->
+    <div id="ai-assistant">
+        <div class="p-5 bg-black text-white flex justify-between items-center text-white">
+            <div class="font-black text-xs uppercase tracking-widest" data-i18n="ai-title">✨ SMART ASSISTANT</div>
+            <button onclick="toggleAI()" class="text-white hover:opacity-70"><i class="fa-solid fa-xmark text-white"></i></button>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="ai-typing-indicator" class="px-4 py-2 text-xs font-bold text-gray-400 hidden"><span class="loading-dots" data-i18n="ai-typing">AI is thinking</span></div>
+        <div class="p-4 border-t border-gray-100 flex gap-2 bg-white text-black">
+            <input type="text" id="user-input" placeholder="..." class="flex-1 bg-gray-100 border-2 border-black px-4 py-2 text-sm focus:outline-none text-black">
+            <button onclick="sendMessage()" class="bg-black text-white w-10 h-10 flex items-center justify-center border-2 border-black">
+                <i class="fa-solid fa-paper-plane text-xs text-white"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="fixed bottom-6 left-4 right-4 z-[1000] lg:hidden text-black text-black">
+        <div class="bg-white border-4 border-black p-2 grid grid-cols-3 gap-2 shadow-[8px_8px_0px_rgba(0,0,0,0.1)] text-black">
+            <a href="tel:0489506868" class="h-12 bg-gray-100 flex flex-col items-center justify-center border-2 border-black text-black"><i class="fa-solid fa-phone text-xs text-black"></i><span class="text-[6px] font-black uppercase text-black" data-i18n="mob-call">Call</span></a>
+            <button onclick="toggleAI()" class="h-12 bg-blue-50 text-blue-600 flex flex-col items-center justify-center border-2 border-black text-blue-600"><i class="fa-solid fa-robot text-xs text-blue-600"></i><span class="text-[6px] font-black uppercase text-center text-blue-600" data-i18n="mob-ai">AI Bot</span></button>
+            <button onclick="openMess()" class="h-12 bg-red-600 text-white flex flex-col items-center justify-center border-2 border-black shadow-[3px_3px_0px_#000] text-white"><i class="fa-brands fa-facebook-messenger text-lg text-white"></i><span class="text-[6px] font-black uppercase text-center text-white" data-i18n="mob-apply">Apply</span></button>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = ""; 
+        let currentLang = 'en';
+        let currentSlide = 0;
+        const totalSlides = 5;
+
+        // MULTILINGUAL DATA - FULL UPDATES
+        const translations = {
+            en: {
+                ticker: "📢 CAMPAIGN 2026: 0 YEN INITIAL COST • 10,000 YEN CASHBACK • NO CREDIT CARD REQUIRED • SUPPORT IN ENGLISH, JAPANESE & VIETNAMESE 24/7 📢",
+                "nav-sub": "Japan Connectivity Experts", "nav-selection": "Selection", "nav-legal": "Legal Note", "nav-faq": "FAQ",
+                "btn-register": "Register", "hero-badge": "#1 Expat Choice in Japan", "hero-title": "THE SMART <br><span class='text-blue-600'>WAY TO CONNECT</span><br>IN JAPAN",
+                "hero-desc": "Skip the complex Japanese contracts. Get 5G internet with your Residence Card. Support available in multiple languages.",
+                "btn-start": "Start Selection", "btn-why": "Learn Why Us",
+                "slide1-h": "Who are <br><span class='text-blue-600'>we?</span>", "slide1-p": "Specialized connectivity partner for the international community in Japan.",
+                "slide1-trusted": "Trusted by", "slide1-count": "15,000+ Internationals",
+                "slide2-h": "Language <br><span class='text-red-600'>Support</span>", "slide2-p": "Chat with our fluent staff in Vietnamese, Japanese or English anytime.",
+                "btn-chat-vn": "Chat with Staff", "slide3-h": "AI Smart <br><span class='text-blue-500'>Expert</span>",
+                "slide3-p": "Our AI system finds the perfect data plan for you in seconds.",
+                "btn-ai": "✨ Consult with AI", "slide4-h": "Community", "review1": "\"Accepted me with just a residence card! Fast delivery.\"",
+                "slide5-h": "Join Us", "benefit1": "NO CREDIT CARD", "benefit2": "NO BANK BOOK", "btn-reg-now": "Apply Now",
+                "matrix-h": "WHICH PLAN FITS YOUR LIFE?", "matrix-sim": "SIM ONLY", "matrix-sim-p": "Individuals & Students",
+                "matrix-pocket": "POCKET WIFI", "matrix-pocket-p": "Laptops & Travelers",
+                "matrix-home": "HOME WIFI", "matrix-home-p": "Plug & Play (L11-L13)",
+                "matrix-fiber": "FIBER WIFI", "matrix-fiber-p": "Gaming & Family", "sim-h": "01. SIM SELECTION",
+                "sim-cat-budget": "Gói 50GB tiết kiệm", "sim-cat-power": "Gói 100GB Đánh Trực Tiếp", 
+                "price-sim-50-rkt": "¥2,280", "price-sim-50-sb": "¥2,780",
+                "price-sim-100-rkt": "¥2,680", "price-sim-100-sb": "¥3,280",
+                "price-universal-device": "¥4,480", "tax-note": "* All prices exclude tax.",
+                "pocket-h": "02. POCKET WIFI 5G", "pocket-x12-p": "Peak 2.7Gbps Speed", "pocket-galaxy-p": "Touchscreen Battery",
+                "btn-order-x12": "Order X12 Now", "btn-order-galaxy": "Order Galaxy Now",
+                "home-h": "03. HOME WIFI (L11-L13)", "home-basic": "BASIC", "home-standard": "STANDARD", "home-premium": "PREMIUM", "home-new": "NEW",
+                "btn-select-l11": "Select L11", "btn-select-l12": "Select L12", "btn-get-l13": "GET L13 NOW",
+                "fiber-h": "FIBER ULTRA FAST", "fiber-p": "1Gbps - 10Gbps Stable connection. No data limits.", "faq-h": "FREQUENTLY ASKED QUESTIONS",
+                "foot-support": "Support", "foot-mess-vn": "Messenger", "foot-legal": "Legal Info", "foot-terms": "Contract Terms",
+                "foot-privacy": "Privacy Policy", "foot-act": "Telecom Business Act", "foot-copy": "© 2026 GLOBAL INTERNET JAPAN. LICENSED OPERATOR.<br>* EXCL. CONSUMPTION TAX (10%).",
+                "ai-title": "✨ SMART ASSISTANT", "ai-typing": "AI is thinking", "ai-placeholder": "Ask anything...", "mob-call": "Call", "mob-ai": "AI Bot", "mob-legal": "Legal", "mob-apply": "Apply"
+            },
+            jp: {
+                ticker: "📢 2026年春：初期費用0円 • 10,000円還元 • クレジットカード不要 • 英語・日本語・ベトナム語対応 📢",
+                "nav-sub": "日本国内接続エキスパート", "nav-selection": "プラン選択", "nav-legal": "法的通知", "nav-faq": "よくある質問",
+                "btn-register": "お申込み", "hero-badge": "在日外国人に選ばれてNo.1", "hero-title": "日本での生活を<br><span class='text-blue-600'>もっとスマートに</span><br>接続する",
+                "hero-desc": "複雑な契約は不要. 在留カードだけで5Gインターネットを. 多言語サポート完備.",
+                "btn-start": "診断を始める", "btn-why": "選ばれる理由",
+                "slide1-h": "私たちについて", "slide1-p": "在日外国人コミュニティのための通信パートナー. 信頼と速さを提供.",
+                "slide1-trusted": "信頼の実績", "slide1-count": "15,000名以上の利用者",
+                "slide2-h": "多言語対応", "slide2-p": "ベトナム語や英語でいつでもスタッフとチャットできます.",
+                "btn-chat-vn": "スタッフに相談", "slide3-h": "AI診断", "slide3-p": "あなたに最適なプランをAI ✨ が即座に提案します.",
+                "btn-ai": "✨ AIに相談", "slide4-h": "利用者の声", "review1": "「在留カードだけで契約できました！配送も早いです.」",
+                "slide5-h": "今すぐ開始", "benefit1": "クレジットカード不要", "benefit2": "銀行印不要", "btn-reg-now": "申し込む",
+                "matrix-h": "あなたにぴったりのプランは？", "matrix-sim": "SIMのみ", "matrix-sim-p": "一人暮らしの方",
+                "matrix-pocket": "ポケットWifi", "matrix-pocket-p": "PC利用・外出先",
+                "matrix-home": "置くだけWifi", "matrix-home-p": "工事不要 (L11-L13)",
+                "matrix-fiber": "光回線", "matrix-fiber-p": "ゲーム・家族利用", "sim-h": "01. SIMカード選択",
+                "sim-cat-budget": "50GBプラン", "sim-cat-power": "100GBプラン", 
+                "price-sim-50-rkt": "¥2,280", "price-sim-50-sb": "¥2,780",
+                "price-sim-100-rkt": "¥2,680", "price-sim-100-sb": "¥3,280",
+                "price-universal-device": "¥4,480", "tax-note": "* 税抜き価格表示です.",
+                "pocket-h": "02. 5GポケットWifi", "pocket-x12-p": "最大2.7Gbps", "pocket-galaxy-p": "大画面液晶",
+                "home-h": "03. 置くだけWifi", "home-basic": "基本", "home-standard": "標準", "home-premium": "最上位",
+                "fiber-h": "光回線 超高速", "fiber-p": "1Gbps - 10Gbps. 無制限.", "faq-h": "よくあるご質問",
+                "foot-support": "サポート", "foot-mess-vn": "チャット", "foot-legal": "法的情報", "foot-terms": "利用規約",
+                "foot-privacy": "プライバシー", "foot-act": "電気通信事業法", "foot-copy": "© 2026 GLOBAL INTERNET. 届出電気通信事業者.<br>* 消費税（10%）抜き.",
+                "ai-title": "✨ AIアシスタント", "ai-typing": "回答中", "ai-placeholder": "何でも聞いてください", "mob-call": "電話", "mob-ai": "AI相談", "mob-legal": "法的通知", "mob-apply": "申込み"
+            },
+            vi: {
+                ticker: "📢 KHUYẾN MÃI 2026: CHI PHÍ ĐẦU VÀO 0 YÊN • TẶNG 10,000 YÊN TIỀN MẶT • KHÔNG CẦN THẺ TÍN DỤNG • HỖ TRỢ TIẾNG VIỆT 24/7 📢",
+                "nav-sub": "Chuyên Gia Kết Nối Tại Nhật", "nav-selection": "Chọn Gói", "nav-legal": "Pháp Lý", "nav-faq": "Hỏi Đáp",
+                "btn-register": "Đăng Ký", "hero-badge": "#1 Lựa chọn của người Việt tại Nhật", "hero-title": "CÁCH KẾT NỐI <br><span class='text-blue-600'>THÔNG MINH NHẤT</span><br>TẠI NHẬT BẢN",
+                "hero-desc": "Bỏ qua các hợp đồng phức tạp. Đăng ký mạng 5G chỉ với Thẻ ngoại kiều. Hỗ trợ tận tình bằng Tiếng Việt, Anh và Nhật.",
+                "btn-start": "Bắt đầu chọn gói", "btn-why": "Tại sao chọn chúng tôi",
+                "slide1-h": "Chúng tôi <br><span class='text-blue-600'>là ai?</span>", "slide1-p": "Đối tác kết nối chuyên biệt cho cộng đồng quốc tế tại Nhật. Tin cậy và đơn giản.",
+                "slide1-trusted": "Tin dùng bởi", "slide1-count": "15,000+ Khách hàng",
+                "slide2-h": "Hỗ trợ <br><span class='text-red-600'>Đa ngôn ngữ</span>", "slide2-p": "Đừng để rào cản ngôn ngữ làm phiền bạn. Chat với nhân viên người Việt 24/7.",
+                "btn-chat-vn": "Chat Tiếng Việt", "slide3-h": "Trợ lý <br><span class='text-blue-500'>AI Thông Minh</span>",
+                "slide3-p": "Hệ thống AI giúp bạn tìm gói cước hoàn hảo chỉ trong 30 giây.",
+                "btn-ai": "✨ Tư vấn với AI", "slide4-h": "Cộng đồng", "review1": "\"Duy nhất công ty này chấp nhận thẻ ngoại kiều. Giao hàng cực nhanh.\"",
+                "slide5-h": "Hợp tác <br>Cùng bạn", "benefit1": "KHÔNG CẦN THẺ TÍN DỤNG", "benefit2": "KHÔNG CẦN SỔ NGÂN HÀNG", "btn-reg-now": "Đăng Ký Ngay",
+                "matrix-h": "GÓI CƯỚC NÀO PHÙ HỢP VỚI BẠN?", "matrix-sim": "CHỈ MUA SIM", "matrix-sim-p": "Cá nhân & Sinh viên",
+                "matrix-pocket": "POCKET WIFI", "matrix-pocket-p": "Laptop & Di chuyển",
+                "matrix-home": "WIFI CỐ ĐỊNH", "matrix-home-p": "Cắm điện dùng ngay (L11-L13)",
+                "matrix-fiber": "MẠNG CÁP QUANG", "matrix-fiber-p": "Gaming & Gia đình", "sim-h": "01. DANH SÁCH GÓI SIM",
+                "sim-cat-budget": "Gói 50GB tiết kiệm", "sim-cat-power": "Gói 100GB siêu khủng", 
+                "price-sim-50-rkt": "¥2,280", "price-sim-50-sb": "¥2,780",
+                "price-sim-100-rkt": "¥2,680", "price-sim-100-sb": "¥3,280",
+                "price-universal-device": "¥4,480", "tax-note": "* Tất cả giá trên chưa bao gồm 10% thuế.",
+                "pocket-h": "02. POCKET WIFI 5G", "pocket-x12-p": "Tốc độ 2.7Gbps", "pocket-galaxy-p": "Màn hình cảm ứng",
+                "home-h": "03. HOME WIFI (CẮM LÀ DÙNG)", "home-basic": "CƠ BẢN", "home-standard": "TIÊU CHUẨN", "home-premium": "CAO CẤP",
+                "fiber-h": "CÁP QUANG SIÊU TỐC", "fiber-p": "1Gbps - 10Gbps. Không giới hạn.", "faq-h": "CÁC CÂU HỎI THƯỜNG GẶP",
+                "foot-support": "Hỗ Trợ", "foot-mess-vn": "Messenger", "foot-legal": "Thông Tin Pháp Lý", "foot-terms": "Điều Khoản Hợp Đồng",
+                "foot-privacy": "Bảo Mật Thông Tin", "foot-act": "Luật Viễn Thông", "foot-copy": "© 2026 GLOBAL INTERNET JAPAN SERVICE. NHÀ CUNG CẤP CÓ PHÉP.<br>* GIÁ CHƯA BAO GỒM THUẾ (10%).",
+                "ai-title": "✨ TRỢ LÝ THÔNG MINH", "ai-typing": "AI đang trả lời", "ai-placeholder": "Hỏi bất cứ điều gì...", "mob-call": "Gọi", "mob-ai": "AI Bot", "mob-legal": "Pháp Lý", "mob-apply": "Đăng Ký"
+            }
+        };
+
+        const faqs = {
+            en: [
+                { q: "Can I apply without a Credit Card?", a: "Yes! You can pay monthly via Bank Transfer or at any local Convenience Store (Conbini) across Japan. No guarantor needed." },
+                { q: "What documents are required?", a: "Only a clear photo of your Residence Card (Zairyu Card) or valid Passport. No guarantor needed." },
+                { q: "How fast is the delivery?", a: "Once confirmed, we ship immediately. Arrives in 2-3 business days nationwide." }
+            ],
+            jp: [
+                { q: "カードがなくても申し込めますか？", a: "はい！銀行振込やコンビニでのお支払いが可能です. クレジットカードは不要です." },
+                { q: "書類は何が必要ですか？", a: "在留カードまたはパスポートの画像のみで受け付けております. 保証人は不要です." },
+                { q: "商品はいつ届きますか？", a: "確認完了後, 即日発送します. 全国どこでも通常2〜3日でお手元に届きます." }
+            ],
+            vi: [
+                { q: "Không có thẻ tín dụng có đăng ký được không?", a: "Hoàn toàn được! Bạn có thể thanh toán qua chuyển khoản ngân hàng hoặc tại các cửa hàng tiện lợi (Conbini) trên toàn quốc." },
+                { q: "Thủ tục cần những giấy tờ gì?", a: "Bạn chỉ cần ảnh chụp rõ nét Thẻ ngoại kiều (Zairyu Card) hoặc Hộ chiếu. Không cần người bảo lãnh." },
+                { q: "Bao lâu thì nhận được máy?", a: "Sau khi xác nhận đơn hàng, chúng tôi sẽ gửi máy ngay. Bạn sẽ nhận được hàng tại nhà sau 2-3 ngày làm việc." }
+            ]
+        };
+
+        // --- ENHANCED LEGAL CONTENT DATA (FULL DETAILS IN 3 LANGUAGES) ---
+        const legalData = {
+            en: {
+                terms: `
+                    <h2 class='font-black uppercase mb-6 text-2xl border-b-4 border-black pb-2 text-jp-blue'>1. Contract Terms & Conditions</h2>
+                    <div class='space-y-6 text-sm leading-relaxed uppercase font-bold text-black'>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>1.1 SERVICE SCOPE</h3>
+                            <p>Global Internet provides high-speed 5G mobile data and fixed broadband services strictly within Japan. Global roaming is not included unless specified in a global-pass contract.</p>
+                        </section>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>1.2 BILLING & PAYMENTS</h3>
+                            <p>Monthly service fees are calculated on a calendar month basis. Invoices are issued on the 1st and payment is due by the 25th via Bank Transfer or Convenience Store barcode. Late payments will result in immediate service suspension on the 26th.</p>
+                        </section>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>1.3 TERMINATION POLICY</h3>
+                            <p>Termination notice must be submitted via Messenger or official portal at least 15 days before the end of your desired final month. Final month fees are charged in full (no pro-rating).</p>
+                        </section>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>1.4 FAIR USAGE (FUP)</h3>
+                            <p>To ensure network quality for the expat community, extreme data consumption that causes congestion may result in temporary speed throttling during peak hours.</p>
+                        </section>
+                    </div>`,
+                privacy: `
+                    <h2 class='font-black uppercase mb-6 text-2xl border-b-4 border-black pb-2 text-jp-blue'>2. Expat Privacy Policy (APPI)</h2>
+                    <div class='space-y-6 text-sm leading-relaxed uppercase font-bold text-black'>
+                        <p>We strictly comply with Japan's "Act on the Protection of Personal Information".</p>
+                        <ul class='list-disc pl-5 space-y-4 text-black'>
+                            <li><span class='text-jp-red'>IDENTITY VERIFICATION:</span> Your Residence Card or Passport images are used solely for identity verification required by the Ministry of Internal Affairs.</li>
+                            <li><span class='text-jp-red'>ENCRYPTED STORAGE:</span> All digital documents are stored on high-security Japanese servers with 256-bit AES encryption.</li>
+                            <li><span class='text-jp-red'>PURGE POLICY:</span> To protect your privacy, all ID copies are permanently deleted from our database 30 days after the carrier screening process is completed.</li>
+                            <li><span class='text-jp-red'>NO 3RD PARTIES:</span> We never sell your data to marketing firms. Information is shared only with the upstream carrier (Softbank/Rakuten/KDDI) for line activation.</li>
+                        </ul>
+                    </div>`,
+                act: `
+                    <h2 class='font-black uppercase mb-6 text-2xl border-b-4 border-black pb-2 text-jp-blue'>3. Consumer Protection (Telecom Act)</h2>
+                    <div class='space-y-6 text-sm leading-relaxed uppercase font-bold text-black'>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>ARTICLE 26 COMPLIANCE</h3>
+                            <p>We are a registered Telecommunications Business in Japan. We provide a mandatory "Important Matters Explanation" (Juyojiko Setsumei) before contract conclusion to ensure no hidden fees exist.</p>
+                        </section>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>INITIAL CONTRACT CANCELLATION</h3>
+                            <p>Customers have the legal right to cancel their contract within 8 days of receiving hardware if the signal quality at their residence is insufficient. This is the "Initial Contract Cancellation System" mandated by Japanese law.</p>
+                        </section>
+                    </div>`
+            },
+            jp: {
+                terms: `
+                    <h2 class='font-black mb-6 text-2xl border-b-4 border-black pb-2 text-jp-blue'>1. 利用規約 (契約諸条件)</h2>
+                    <div class='space-y-6 text-sm leading-relaxed font-bold uppercase text-black'>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>1.1 サービス範囲</h3>
+                            <p>日本国内専用の通信サービスを提供します. 海外ローミングは原則として対応しておりません.</p>
+                        </section>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>1.2 請求および支払い</h3>
+                            <p>月額料金は毎月1日に発生します. お支払いは毎月25日までに銀行振込またはコンビニ払いにて完了してください. 期限を過ぎた場合は翌26日にサービスが停止されます.</p>
+                        </section>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>1.3 解約について</h3>
+                            <p>解約希望月の15日前までに通知が必要です. 解約月の料金は日割り計算を行わず, 満額請求となります.</p>
+                        </section>
+                    </div>`,
+                privacy: `
+                    <h2 class='font-black mb-6 text-2xl border-b-4 border-black pb-2 text-jp-blue'>2. 個人情報保護方針</h2>
+                    <div class='space-y-4 text-sm leading-relaxed font-bold uppercase text-black'>
+                        <p>「個人情報の保護に関する法律」（APPI）を遵守します.</p>
+                        <p>在留カード等の本人確認書類は, 通信事業者の審査目的にのみ使用し, 審査終了後30日以内にシステムから安全に削除されます. 第三者へのデータ提供は一切行いません.</p>
+                    </div>`,
+                act: `
+                    <h2 class='font-black mb-6 text-2xl border-b-4 border-black pb-2 text-jp-blue'>3. 電気通信事業法に基づく表示</h2>
+                    <div class='space-y-6 text-sm leading-relaxed font-bold uppercase text-black'>
+                        <p>電気通信事業法第26条（重要事項説明）を遵守し, 不透明な費用請求は行いません.</p>
+                        <p>「初期契約解除制度」：商品受領後8日以内であれば, 電波状況不備を理由に契約を解除することが可能です（事務手数料等の負担あり）.</p>
+                    </div>`
+            },
+            vi: {
+                terms: `
+                    <h2 class='font-black uppercase mb-6 text-2xl border-b-4 border-black pb-2 text-jp-blue'>1. Điều Khoản Hợp Đồng & Dịch Vụ</h2>
+                    <div class='space-y-6 text-sm leading-relaxed uppercase font-bold text-black text-black'>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>1.1 PHẠM VI DỊCH VỤ</h3>
+                            <p>Global Internet cung cấp dịch vụ Internet di động 5G và cáp quang cố định hoàn toàn trong lãnh thổ Nhật Bản. Không hỗ trợ chuyển vùng quốc tế trừ khi có đăng ký riêng.</p>
+                        </section>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>1.2 CHU KỲ CƯỚC & THANH TOÁN</h3>
+                            <p>Cước dịch vụ tính theo tháng dương lịch. Hóa đơn xuất ngày 1 hàng tháng. Khách hàng phải thanh toán trước ngày 25 qua Conbini hoặc Ngân hàng. Việc chậm thanh toán sẽ dẫn đến cắt mạng ngay vào ngày 26.</p>
+                        </section>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>1.3 QUY ĐỊNH HỦY HỢP ĐỒNG</h3>
+                            <p>Thông báo hủy cần thực hiện trước ít nhất 15 ngày tính đến cuối tháng muốn dừng. Phí cước tháng cuối cùng thu đủ 100%, không chia lẻ theo ngày.</p>
+                        </section>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>1.4 CHÍNH SÁCH CÔNG BẰNG (FUP)</h3>
+                            <p>Để đảm bảo chất lượng mạng cho cộng đồng quốc tế, người dùng có lưu lượng dữ liệu bất thường gây nghẽn mạng cục bộ có thể bị giới hạn tốc độ tạm thời vào giờ cao điểm.</p>
+                        </section>
+                    </div>`,
+                privacy: `
+                    <h2 class='font-black uppercase mb-6 text-2xl border-b-4 border-black pb-2 text-jp-blue'>2. Chính Sách Bảo Mật Thông Tin (APPI)</h2>
+                    <div class='space-y-6 text-sm leading-relaxed uppercase font-bold text-black'>
+                        <p>Global Internet tuân thủ nghiêm ngặt "Luật bảo vệ thông tin cá nhân" của Nhật Bản.</p>
+                        <ul class='list-disc pl-5 space-y-4 text-black'>
+                            <li><span class='text-jp-red'>XÁC MINH DANH TÍNH:</span> Ảnh Thẻ ngoại kiều hoặc Hộ chiếu chỉ dùng cho mục đích đăng ký với nhà mạng theo yêu cầu của Bộ Tổng vụ Nhật Bản.</li>
+                            <li><span class='text-jp-red'>MÃ HÓA BẢO MẬT:</span> Mọi tệp tin ID đều được mã hóa 256-bit và lưu trữ trên máy chủ an toàn đặt tại Nhật Bản.</li>
+                            <li><span class='text-jp-red'>TỰ ĐỘNG XÓA:</span> Để bảo mật tối đa, hình ảnh ID của bạn sẽ bị xóa vĩnh viễn khỏi hệ thống sau 30 ngày kể từ khi hoàn tất xét duyệt.</li>
+                            <li><span class='text-jp-red'>BÊN THỨ BA:</span> Chúng tôi cam kết không bao giờ bán dữ liệu cho bất kỳ đơn vị quảng cáo nào.</li>
+                        </ul>
+                    </div>`,
+                act: `
+                    <h2 class='font-black uppercase mb-6 text-2xl border-b-4 border-black pb-2 text-jp-blue'>3. Bảo Vệ Người Tiêu Dùng (Luật Viễn Thông)</h2>
+                    <div class='space-y-6 text-sm leading-relaxed uppercase font-bold text-black'>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>ĐIỀU 26 LUẬT VIỄN THÔNG</h3>
+                            <p>Là nhà cung cấp đã đăng ký, chúng tôi cung cấp đầy đủ văn bản "Giải thích các mục quan trọng" về giá cước, phí hủy và hạ tầng mạng trước khi ký kết. Không có chi phí ẩn.</p>
+                        </section>
+                        <section>
+                            <h3 class='text-jp-red mb-2 underline'>CHẾ ĐỘ HỦY HỢP ĐỒNG BAN ĐẦU</h3>
+                            <p>Khách hàng có quyền hủy hợp đồng trong vòng 8 ngày kể từ ngày nhận thiết bị/SIM nếu chất lượng sóng tại nơi ở quá yếu. Đây là quy định bắt buộc bảo vệ người tiêu dùng tại Nhật Bản.</p>
+                        </section>
+                    </div>`
+            }
+        };
+
+        // GEMINI API
+        async function callGeminiAPI(query) {
+            const systemPrompt = `
+                You are the Official Assistant for Global Internet Japan. Respond in ${currentLang}. 
+                PRICES (Tax Excl.):
+                1. SIM: 50GB Rakuten ¥2,280, 50GB SB ¥2,780, 100GB Rakuten ¥2,680, 100GB SB ¥3,280.
+                2. Devices: X12, Galaxy, Home L11/L12/L13 all ¥4,480/mo.
+                Requirements: Only Residence Card (Zairyu) or Passport. No Credit Card needed. Pay at Conbini. Apply via Messenger link: https://m.me/JapanSIMPocketWiFi.
+            `;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = { contents: [{ parts: [{ text: query }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
+            try {
+                const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                const result = await response.json();
+                return result.candidates?.[0]?.content?.parts?.[0]?.text || "Messenger Support is online!";
+            } catch (e) { return "Please contact us via Messenger!"; }
+        }
+
+        // FUNCTIONS
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('lang-active', b.id === `btn-${lang}`));
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.innerHTML = translations[lang][key];
+            });
+            const faqContainer = document.getElementById('faq-container');
+            if(faqs[lang]) {
+                faqContainer.innerHTML = faqs[lang].map(item => `
+                    <div class="faq-item" onclick="this.classList.toggle('active')">
+                        <div class="faq-question"><span>${item.q}</span><i class="fa-solid fa-chevron-down"></i></div>
+                        <div class="faq-answer"><div class="p-6 text-black">${item.a}</div></div>
+                    </div>`).join('');
+            }
+            const chat = document.getElementById('chat-messages');
+            chat.innerHTML = `<div class="message ai-message">${currentLang === 'vi' ? 'Chào bạn! Tôi là trợ lý ✨ Global Internet. Tôi có thể giúp gì cho bạn?' : 'Hello! I am your ✨ Global Internet assistant. How can I help you?'}</div>`;
+        }
+
+        function togglePlanSection(id, element) {
+            document.querySelectorAll('.plan-section').forEach(s => s.classList.remove('show'));
+            document.querySelectorAll('.matrix-card').forEach(c => c.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) {
+                target.classList.add('show');
+                setTimeout(() => window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' }), 100);
+            }
+            if (element) element.classList.add('active');
+        }
+
+        function openLegal(type) {
+            const modal = document.getElementById('legal-modal');
+            const content = document.getElementById('legal-content');
+            content.innerHTML = legalData[currentLang][type];
+            modal.style.display = 'flex';
+        }
+
+        function openMess() { window.open("https://m.me/JapanSIMPocketWiFi", '_blank'); }
+
+        function updateCarousel() {
+            const wrapper = document.getElementById('hero-carousel');
+            if (wrapper) {
+                wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+                document.querySelectorAll('.carousel-dot').forEach((dot, idx) => dot.classList.toggle('active', idx === currentSlide));
+            }
+        }
+        function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; updateCarousel(); }
+        function goToSlide(idx) { currentSlide = idx; updateCarousel(); }
+        setInterval(nextSlide, 6000);
+
+        function toggleAI(initialMsg = null) { 
+            const ass = document.getElementById('ai-assistant');
+            ass.style.display = ass.style.display === 'flex' ? 'none' : 'flex';
+            if (initialMsg && ass.style.display === 'flex') {
+                document.getElementById('user-input').value = initialMsg;
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('user-input');
+            const text = input.value.trim();
+            if(!text) return;
+            appendMessage(text, 'user');
+            input.value = '';
+            const typing = document.getElementById('ai-typing-indicator');
+            typing.classList.remove('hidden');
+            try {
+                const response = await callGeminiAPI(text);
+                appendMessage(response, 'ai');
+            } catch (e) { appendMessage("Error. Please use Messenger!", 'ai'); }
+            finally { typing.classList.add('hidden'); }
+        }
+
+        function appendMessage(text, sender) {
+            const chat = document.getElementById('chat-messages');
+            const msg = document.createElement('div');
+            msg.className = `message ${sender}-message mb-2`;
+            msg.innerText = text;
+            chat.appendChild(msg);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        document.getElementById('user-input').addEventListener('keypress', e => { if(e.key === 'Enter') sendMessage(); });
+        window.onload = () => { setLang('en'); updateCarousel(); };
+    </script>
+</body>
+</html>
