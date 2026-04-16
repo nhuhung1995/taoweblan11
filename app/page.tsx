@@ -3,6 +3,7 @@ import { ArrowRight, Newspaper, Quote, ShieldCheck, Sparkles, Star, UserRoundChe
 import type { Metadata } from "next";
 import SectionTitle from "@/components/SectionTitle";
 import FaqList from "@/components/FaqList";
+import Hero5GCanvas from "@/components/Hero5GCanvas";
 import { products } from "@/data/products";
 import { supportFaqs } from "@/data/support";
 import { buildMetadata, siteConfig } from "@/lib/seo";
@@ -113,63 +114,7 @@ export default function HomePage() {
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-      <section className="relative overflow-hidden bg-hero-v3 text-white">
-        <div className="absolute left-1/2 top-[34%] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#ff9a5d]/16 blur-[120px]" />
-        <div className="absolute right-[12%] top-[16%] h-52 w-52 rounded-full bg-[#ffbf8c]/12 blur-[90px]" />
-        <div className="absolute left-[10%] top-[18%] h-40 w-40 rounded-full bg-[#d05d9f]/16 blur-[80px]" />
-
-        <div className="mx-auto max-w-7xl px-4 py-24 text-center md:px-8 lg:px-10 lg:py-28">
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-sm text-[#ffd6bd] backdrop-blur">
-            <Sparkles className="h-4 w-4" />
-            Global Internet 5G · Kết nối và tư vấn internet tại Nhật
-          </div>
-
-          <h1 className="mx-auto mt-7 max-w-5xl text-5xl font-semibold leading-[1.04] md:text-7xl lg:text-[5.2rem]">
-            Global Internet 5G mang đến giải pháp internet tại Nhật với trải nghiệm
-            <span className="text-[#ffcb9c]"> premium</span>, rõ ràng, ấm áp và đáng tin cậy.
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/78 md:text-xl">
-            Chúng tôi đồng hành cùng khách hàng trong việc chọn đúng SIM vật lý, eSIM, Pocket WiFi, Home WiFi hoặc Hikari theo thiết bị, thời gian sử dụng và nhu cầu thực tế tại Nhật.
-          </p>
-
-          <div className="mt-9 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/lien-he"
-              className="inline-flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,#ffcb9c,#f08d5c)] px-7 py-4 font-semibold text-[#2b1623] shadow-glow transition hover:-translate-y-0.5"
-            >
-              Nhận tư vấn ngay
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-            <Link
-              href="/pricing"
-              className="inline-flex items-center gap-2 rounded-full border border-white/18 bg-white/6 px-7 py-4 font-semibold text-white transition hover:bg-white/10"
-            >
-              Xem bảng giá
-            </Link>
-          </div>
-
-          <div className="mx-auto mt-14 max-w-5xl rounded-[40px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,224,203,0.05))] p-6 shadow-[0_28px_80px_rgba(32,12,25,0.45)] backdrop-blur-2xl md:p-8">
-            <div className="grid gap-5 md:grid-cols-3">
-              <div className="rounded-[28px] border border-white/10 bg-white/8 p-5 text-left">
-                <div className="text-xs font-semibold uppercase tracking-[0.28em] text-[#ffd5be]">SIM & eSIM</div>
-                <p className="mt-3 text-xl font-semibold text-white">Giải pháp cá nhân</p>
-                <p className="mt-3 leading-7 text-white/72">Tối ưu cho người cần internet nhanh, gọn và linh hoạt theo thiết bị đang dùng.</p>
-              </div>
-              <div className="rounded-[28px] border border-white/10 bg-white/8 p-5 text-left">
-                <div className="text-xs font-semibold uppercase tracking-[0.28em] text-[#ffd5be]">Pocket / Home WiFi</div>
-                <p className="mt-3 text-xl font-semibold text-white">Kết nối hằng ngày</p>
-                <p className="mt-3 leading-7 text-white/72">Phù hợp cho nhu cầu đi lại nhiều thiết bị hoặc cần dùng internet tại nhà thật nhanh.</p>
-              </div>
-              <div className="rounded-[28px] border border-white/10 bg-white/8 p-5 text-left">
-                <div className="text-xs font-semibold uppercase tracking-[0.28em] text-[#ffd5be]">Hikari Fiber</div>
-                <p className="mt-3 text-xl font-semibold text-white">Ổn định lâu dài</p>
-                <p className="mt-3 leading-7 text-white/72">Lựa chọn dành cho gia đình hoặc khách hàng muốn đầu tư nghiêm túc cho internet tại nhà.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero5GCanvas />
 
       <section className="relative overflow-hidden bg-[#180b17] text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_10%,rgba(255,160,91,0.12),transparent_18%),radial-gradient(circle_at_90%_20%,rgba(255,122,88,0.10),transparent_16%)]" />
