@@ -14,7 +14,6 @@ export const navigation: NavItem[] = [
       { label: "Hikari", href: "/san-pham/hikari", description: "Internet cáp quang cố định cho nhu cầu ổn định lâu dài." },
     ],
   },
-  { label: "Pricing", href: "/pricing" },
   { label: "Giải pháp", href: "/giai-phap" },
   { label: "Hỗ trợ", href: "/ho-tro" },
   { label: "Liên hệ", href: "/lien-he" },

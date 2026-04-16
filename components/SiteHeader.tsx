@@ -62,8 +62,8 @@ export default function SiteHeader() {
                     <ChevronDown className="h-4 w-4" />
                   </button>
                   {productOpen && (
-                    <div className="absolute left-0 top-full mt-4 w-[420px] rounded-[28px] border border-white/12 bg-[linear-gradient(180deg,rgba(47,19,30,0.97),rgba(68,28,44,0.96))] p-3 shadow-[0_24px_60px_rgba(18,8,16,0.45)] backdrop-blur-2xl">
-                      <div className="grid gap-2">
+                    <div className="absolute left-0 top-full w-[420px] pt-3">
+                      <div className="grid gap-2 rounded-[28px] border border-white/12 bg-[linear-gradient(180deg,rgba(47,19,30,0.97),rgba(68,28,44,0.96))] p-3 shadow-[0_24px_60px_rgba(18,8,16,0.45)] backdrop-blur-2xl">
                         <Link
                           href={item.href}
                           className="rounded-[22px] border border-transparent px-4 py-3 font-semibold text-[#ffd5be] transition hover:border-white/10 hover:bg-white/8"
