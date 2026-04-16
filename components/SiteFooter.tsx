@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ClipboardList, MapPin, MessageSquareText } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import LogoMark from "@/components/LogoMark";
 import { navigation } from "@/data/navigation";
 
@@ -26,22 +26,10 @@ export default function SiteFooter() {
         <div>
           <div className="text-sm font-semibold uppercase tracking-[0.26em] text-[#ffd3bc]">Thông tin</div>
           <div className="mt-5 grid gap-4 text-sm text-white/70">
-            <div className="flex items-start gap-3">
-              <ClipboardList className="mt-0.5 h-4 w-4 text-[#ffd3bc]" />
-              <span>Nhận tư vấn qua form nhu cầu tại trang Liên hệ để được phản hồi theo từng trường hợp cụ thể.</span>
-            </div>
-            <div className="flex items-start gap-3">
-              <MessageSquareText className="mt-0.5 h-4 w-4 text-[#ffd3bc]" />
-              <span>Hỗ trợ bằng tiếng Việt cho khách mới sang Nhật, người đi làm, du học sinh và gia đình.</span>
-            </div>
-            <div className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-4 w-4 text-[#ffd3bc]" />
-              <span>Phạm vi hỗ trợ: khu vực Nhật Bản, tư vấn theo nơi ở và điều kiện triển khai thực tế.</span>
-            </div>
+            <div className="flex items-start gap-3"><Phone className="mt-0.5 h-4 w-4 text-[#ffd3bc]" /><span>Hotline tư vấn: 090-xxxx-xxxx</span></div>
+            <div className="flex items-start gap-3"><Mail className="mt-0.5 h-4 w-4 text-[#ffd3bc]" /><span>Email: contact@globalinternet5g.com</span></div>
+            <div className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 text-[#ffd3bc]" /><span>Hỗ trợ khách hàng tại Nhật cho nhu cầu cá nhân, gia đình, du học và người đi làm.</span></div>
           </div>
-          <Link href="/lien-he" className="mt-5 inline-flex rounded-full bg-[linear-gradient(135deg,#ffd2b1,#f29a69)] px-5 py-3 font-semibold text-[#2b1623]">
-            Gửi nhu cầu tư vấn
-          </Link>
         </div>
       </div>
       <div className="border-t border-white/8 px-4 py-4 text-center text-sm text-white/45 md:px-8 lg:px-10">
