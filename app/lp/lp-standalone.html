@@ -377,6 +377,56 @@
             background: radial-gradient(circle, rgba(255,204,0,0.20), transparent 70%);
             pointer-events: none;
         }
+        .matrix-card.product-bg {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 210px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            position: relative;
+        }
+        .matrix-card.product-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(8,12,20,0.74) 100%);
+        }
+        .matrix-card-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.96));
+            border-top: 2px solid rgba(0,0,0,0.15);
+            padding: 16px 10px 14px;
+        }
+        .matrix-card.product-bg h4 {
+            color: #0f172a !important;
+        }
+        .matrix-card.product-bg p {
+            color: #334155 !important;
+        }
+        .bg-sim-only {
+            background-image:
+                linear-gradient(135deg, rgba(59,130,246,0.18), rgba(2,132,199,0.18)),
+                url('https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=1200&q=80');
+        }
+        .bg-pocket-wifi {
+            background-image:
+                linear-gradient(135deg, rgba(239,68,68,0.16), rgba(245,158,11,0.14)),
+                url('https://images.unsplash.com/photo-1520869562399-e772f042f422?auto=format&fit=crop&w=1200&q=80');
+        }
+        .bg-home-wifi {
+            background-image:
+                linear-gradient(135deg, rgba(250,204,21,0.18), rgba(245,158,11,0.14)),
+                url('https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1200&q=80');
+        }
+        .bg-fiber-wifi {
+            background-image:
+                linear-gradient(135deg, rgba(15,23,42,0.30), rgba(17,24,39,0.36)),
+                url('https://images.unsplash.com/photo-1563770660941-10a63607678f?auto=format&fit=crop&w=1200&q=80');
+        }
 
         .faq-item:hover {
             transform: translate(-1px, -1px);
@@ -511,25 +561,33 @@
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl font-black uppercase italic tracking-tighter mb-16" data-i18n="matrix-h">WHICH PLAN FITS YOUR LIFE?</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                <div id="card-sim" onclick="togglePlanSection('sim-plans', this)" class="matrix-card card-jp p-8 text-center cursor-pointer border-blue-600 hover:bg-blue-50 transition-all group">
-                    <i class="fa-solid fa-mobile-screen-button text-3xl mb-4 group-hover:scale-110"></i>
-                    <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-sim">SIM ONLY</h4>
-                    <p class="text-[10px] font-bold text-gray-500 uppercase" data-i18n="matrix-sim-p">Solo Expats & Students</p>
+                <div id="card-sim" onclick="togglePlanSection('sim-plans', this)" class="matrix-card product-bg bg-sim-only card-jp text-center cursor-pointer border-blue-600 transition-all group">
+                    <div class="matrix-card-content">
+                        <i class="fa-solid fa-mobile-screen-button text-3xl mb-4 group-hover:scale-110"></i>
+                        <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-sim">SIM ONLY</h4>
+                        <p class="text-[10px] font-bold uppercase" data-i18n="matrix-sim-p">Solo Expats & Students</p>
+                    </div>
                 </div>
-                <div id="card-pocket" onclick="togglePlanSection('pocket-wifi', this)" class="matrix-card card-jp p-8 text-center cursor-pointer border-red-600 hover:bg-red-50 transition-all group">
-                    <i class="fa-solid fa-wifi text-3xl mb-4 group-hover:scale-110"></i>
-                    <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-pocket">POCKET WIFI</h4>
-                    <p class="text-[10px] font-bold text-gray-500 uppercase" data-i18n="matrix-pocket-p">Laptops & Travel Use</p>
+                <div id="card-pocket" onclick="togglePlanSection('pocket-wifi', this)" class="matrix-card product-bg bg-pocket-wifi card-jp text-center cursor-pointer border-red-600 transition-all group">
+                    <div class="matrix-card-content">
+                        <i class="fa-solid fa-wifi text-3xl mb-4 group-hover:scale-110"></i>
+                        <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-pocket">POCKET WIFI</h4>
+                        <p class="text-[10px] font-bold uppercase" data-i18n="matrix-pocket-p">Laptops & Travel Use</p>
+                    </div>
                 </div>
-                <div id="card-home" onclick="togglePlanSection('home-wifi', this)" class="matrix-card card-jp p-8 text-center cursor-pointer border-yellow-500 hover:bg-yellow-50 transition-all group">
-                    <i class="fa-solid fa-house-signal text-3xl mb-4 group-hover:scale-110"></i>
-                    <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-home">HOME WIFI</h4>
-                    <p class="text-[10px] font-bold text-gray-500 uppercase" data-i18n="matrix-home-p">Plug & Play (L11-L13)</p>
+                <div id="card-home" onclick="togglePlanSection('home-wifi', this)" class="matrix-card product-bg bg-home-wifi card-jp text-center cursor-pointer border-yellow-500 transition-all group">
+                    <div class="matrix-card-content">
+                        <i class="fa-solid fa-house-signal text-3xl mb-4 group-hover:scale-110"></i>
+                        <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-home">HOME WIFI</h4>
+                        <p class="text-[10px] font-bold uppercase" data-i18n="matrix-home-p">Plug & Play (L11-L13)</p>
+                    </div>
                 </div>
-                <div id="card-fiber" onclick="togglePlanSection('fiber-wifi', this)" class="matrix-card card-jp p-8 text-center cursor-pointer border-black hover:bg-gray-100 transition-all group">
-                    <i class="fa-solid fa-bolt-lightning text-3xl mb-4 group-hover:scale-110"></i>
-                    <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-fiber">FIBER WIFI</h4>
-                    <p class="text-[10px] font-bold text-gray-500 uppercase" data-i18n="matrix-fiber-p">Pro Gaming & Family</p>
+                <div id="card-fiber" onclick="togglePlanSection('fiber-wifi', this)" class="matrix-card product-bg bg-fiber-wifi card-jp text-center cursor-pointer border-black transition-all group">
+                    <div class="matrix-card-content">
+                        <i class="fa-solid fa-bolt-lightning text-3xl mb-4 group-hover:scale-110"></i>
+                        <h4 class="font-black text-lg mb-2 uppercase italic" data-i18n="matrix-fiber">FIBER WIFI</h4>
+                        <p class="text-[10px] font-bold uppercase" data-i18n="matrix-fiber-p">Pro Gaming & Family</p>
+                    </div>
                 </div>
             </div>
         </div>
