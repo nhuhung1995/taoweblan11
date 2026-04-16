@@ -1,0 +1,40 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2B131B"/>
+      <stop offset="1" stop-color="#7A3046"/>
+    </linearGradient>
+    <linearGradient id="btn" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFD2B1"/>
+      <stop offset="1" stop-color="#F29A69"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <circle cx="180" cy="140" r="140" fill="#FF9A5D" fill-opacity="0.18"/>
+  <circle cx="1120" cy="120" r="120" fill="#FFBF8C" fill-opacity="0.12"/>
+  <circle cx="1080" cy="620" r="180" fill="#D05D9F" fill-opacity="0.12"/>
+  <rect x="40" y="32" width="1200" height="64" rx="20" fill="#FFFFFF" fill-opacity="0.08"/>
+  <rect x="66" y="48" width="90" height="32" rx="16" fill="#FFF1E6"/>
+  <text x="96" y="69" text-anchor="middle" fill="#341723" font-family="Arial, sans-serif" font-size="16" font-weight="700">Home</text>
+  <text x="200" y="69" fill="#F4DAC8" font-family="Arial, sans-serif" font-size="16" font-weight="700">Sản phẩm</text>
+  <text x="320" y="69" fill="#F4DAC8" font-family="Arial, sans-serif" font-size="16" font-weight="700">Giải pháp</text>
+  <text x="430" y="69" fill="#F4DAC8" font-family="Arial, sans-serif" font-size="16" font-weight="700">Hỗ trợ</text>
+  <text x="520" y="69" fill="#F4DAC8" font-family="Arial, sans-serif" font-size="16" font-weight="700">Liên hệ</text>
+  <text x="120" y="210" fill="#FFD6BD" font-family="Arial, sans-serif" font-size="16" font-weight="700">GLOBAL INTERNET 5G</text>
+  <text x="120" y="280" fill="white" font-family="Arial, sans-serif" font-size="56" font-weight="800">Internet at Japan</text>
+  <text x="120" y="338" fill="white" font-family="Arial, sans-serif" font-size="56" font-weight="800">for Vietnamese users</text>
+  <text x="120" y="390" fill="#FFFFFF" fill-opacity="0.75" font-family="Arial, sans-serif" font-size="22">
+    Premium landing page with product catalog, solution guide, and contact flow.
+  </text>
+  <rect x="120" y="430" width="230" height="58" rx="29" fill="url(#btn)"/>
+  <text x="235" y="466" text-anchor="middle" fill="#2B1623" font-family="Arial, sans-serif" font-size="18" font-weight="700">Nhận tư vấn ngay</text>
+  <rect x="370" y="430" width="190" height="58" rx="29" fill="#FFFFFF" fill-opacity="0.10" stroke="#FFFFFF" stroke-opacity="0.22"/>
+  <text x="465" y="466" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18" font-weight="700">Xem sản phẩm</text>
+  <rect x="760" y="208" width="420" height="300" rx="30" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.18"/>
+  <rect x="790" y="244" width="170" height="108" rx="22" fill="#FFFFFF" fill-opacity="0.11"/>
+  <rect x="980" y="244" width="170" height="108" rx="22" fill="#FFFFFF" fill-opacity="0.11"/>
+  <rect x="790" y="370" width="360" height="108" rx="22" fill="#FFFFFF" fill-opacity="0.11"/>
+  <text x="120" y="650" fill="#FFFFFF" fill-opacity="0.5" font-family="Arial, sans-serif" font-size="14">
+    UI Preview • Next.js + Tailwind CSS • Responsive Layout
+  </text>
+</svg>
