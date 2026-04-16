@@ -1,9 +1,16 @@
-"use client";
-
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import ProductCard from "@/components/ProductCard";
 import SectionTitle from "@/components/SectionTitle";
 import { products } from "@/data/products";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Danh mục sản phẩm",
+  description:
+    "Khám phá đầy đủ SIM vật lý, eSIM, Pocket WiFi, Home WiFi và Hikari để chọn giải pháp internet phù hợp tại Nhật.",
+  path: "/san-pham",
+});
 
 export default function ProductsPage() {
   return (

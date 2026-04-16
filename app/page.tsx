@@ -1,11 +1,19 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight, Newspaper, Quote, ShieldCheck, Sparkles, Star, UserRoundCheck } from "lucide-react";
+import type { Metadata } from "next";
 import SectionTitle from "@/components/SectionTitle";
 import FaqList from "@/components/FaqList";
 import { products } from "@/data/products";
 import { supportFaqs } from "@/data/support";
+import { buildMetadata, siteConfig } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Internet tại Nhật cho người Việt",
+  description:
+    "Tư vấn chọn SIM, eSIM, Pocket WiFi, Home WiFi và Hikari theo nhu cầu thực tế tại Nhật. Rõ ràng, nhanh gọn và đáng tin cậy.",
+  path: "/",
+  keywords: ["internet cho người Việt tại Nhật", "tư vấn internet Nhật Bản"],
+});
 
 const newsItems = [
   {
@@ -90,8 +98,21 @@ const testimonials = [
 ];
 
 export default function HomePage() {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      availableLanguage: ["vi", "ja"],
+    },
+  };
+
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       <section className="relative overflow-hidden bg-hero-v3 text-white">
         <div className="absolute left-1/2 top-[34%] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#ff9a5d]/16 blur-[120px]" />
         <div className="absolute right-[12%] top-[16%] h-52 w-52 rounded-full bg-[#ffbf8c]/12 blur-[90px]" />

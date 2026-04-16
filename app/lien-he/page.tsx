@@ -1,9 +1,16 @@
-"use client";
-
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import ContactCard from "@/components/ContactCard";
 import SectionTitle from "@/components/SectionTitle";
 import FaqList from "@/components/FaqList";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Liên hệ tư vấn",
+  description:
+    "Liên hệ Global Internet 5G để nhận tư vấn giải pháp internet tại Nhật theo thiết bị, thời gian sử dụng và nhu cầu thực tế.",
+  path: "/lien-he",
+});
 
 const contactFaqs = [
   { q: "Gửi form xong sẽ được phản hồi như thế nào?", a: "Sau khi nhận nhu cầu, đội ngũ sẽ phân loại sản phẩm phù hợp và phản hồi theo kênh Quý khách để lại như điện thoại, LINE hoặc email." },

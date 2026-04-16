@@ -1,10 +1,17 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight, CircleDollarSign, Scale, Sparkles } from "lucide-react";
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import SectionTitle from "@/components/SectionTitle";
 import { pricingBands } from "@/data/products";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Pricing và mức chi phí tham khảo",
+  description:
+    "Tham khảo chi phí theo từng nhóm dịch vụ internet tại Nhật: SIM, eSIM, Pocket WiFi, Home WiFi và Hikari.",
+  path: "/pricing",
+});
 
 export default function PricingPage() {
   return (

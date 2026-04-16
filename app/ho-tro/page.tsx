@@ -1,11 +1,18 @@
-"use client";
-
 import Link from "next/link";
 import { HelpCircle, MessagesSquare, ShieldCheck } from "lucide-react";
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import FaqList from "@/components/FaqList";
 import SectionTitle from "@/components/SectionTitle";
 import { supportFaqs } from "@/data/support";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Hỗ trợ và câu hỏi thường gặp",
+  description:
+    "Giải đáp nhanh các câu hỏi thường gặp khi chọn SIM, eSIM, WiFi và Hikari tại Nhật, giúp bạn quyết định dễ dàng hơn.",
+  path: "/ho-tro",
+});
 
 export default function SupportPage() {
   return (

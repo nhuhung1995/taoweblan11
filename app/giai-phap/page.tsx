@@ -1,10 +1,17 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight, BriefcaseBusiness, Home, Plane, School } from "lucide-react";
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import SectionTitle from "@/components/SectionTitle";
 import { solutions } from "@/data/products";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Giải pháp theo nhu cầu",
+  description:
+    "Tìm giải pháp internet phù hợp theo từng hoàn cảnh: người mới sang Nhật, đi công tác, sống một mình hoặc gia đình.",
+  path: "/giai-phap",
+});
 
 const icons = [Plane, BriefcaseBusiness, Home, School];
 

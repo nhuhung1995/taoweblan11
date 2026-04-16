@@ -1,5 +1,3 @@
-"use client";
-
 import { Mail, MessageCircle, PhoneCall, Send } from "lucide-react";
 
 const channels = [

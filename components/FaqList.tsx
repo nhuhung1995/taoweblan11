@@ -1,5 +1,3 @@
-"use client";
-
 type Item = { q: string; a: string };
 
 export default function FaqList({ items, dark = false }: { items: Item[]; dark?: boolean }) {

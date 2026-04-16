@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import LogoMark from "@/components/LogoMark";
 import { navigation } from "@/data/navigation";
 
@@ -17,6 +17,23 @@ export default function SiteHeader() {
     return pathname;
   }, [pathname]);
 
+  useEffect(() => {
+    setMobileOpen(false);
+    setProductOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+        setProductOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onEscape);
+    return () => window.removeEventListener("keydown", onEscape);
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[linear-gradient(90deg,rgba(43,19,27,0.90),rgba(78,33,47,0.82),rgba(83,36,58,0.88))] backdrop-blur-2xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8 lg:px-10">
@@ -24,14 +41,17 @@ export default function SiteHeader() {
           <LogoMark compact />
         </Link>
 
-        <nav className="hidden items-center gap-2 lg:flex">
+        <nav className="hidden items-center gap-2 lg:flex" aria-label="Điều hướng chính">
           {navigation.map((item) => {
             if (item.children) {
               const active = activeTop === item.href;
               return (
                 <div key={item.href} className="relative" onMouseEnter={() => setProductOpen(true)} onMouseLeave={() => setProductOpen(false)}>
-                  <Link
-                    href={item.href}
+                  <button
+                    type="button"
+                    onClick={() => setProductOpen((value) => !value)}
+                    aria-expanded={productOpen}
+                    aria-haspopup="menu"
                     className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition ${
                       active
                         ? "bg-[#fff1e6] text-[#341723] shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
@@ -40,10 +60,16 @@ export default function SiteHeader() {
                   >
                     {item.label}
                     <ChevronDown className="h-4 w-4" />
-                  </Link>
+                  </button>
                   {productOpen && (
                     <div className="absolute left-0 top-full mt-4 w-[420px] rounded-[28px] border border-white/12 bg-[linear-gradient(180deg,rgba(47,19,30,0.97),rgba(68,28,44,0.96))] p-3 shadow-[0_24px_60px_rgba(18,8,16,0.45)] backdrop-blur-2xl">
                       <div className="grid gap-2">
+                        <Link
+                          href={item.href}
+                          className="rounded-[22px] border border-transparent px-4 py-3 font-semibold text-[#ffd5be] transition hover:border-white/10 hover:bg-white/8"
+                        >
+                          Xem tất cả sản phẩm
+                        </Link>
                         {item.children.map((child) => (
                           <Link
                             key={child.href}
@@ -96,6 +122,10 @@ export default function SiteHeader() {
 
         <button
           onClick={() => setMobileOpen((v) => !v)}
+          type="button"
+          aria-label="Mở menu điều hướng"
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
           className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/12 bg-white/8 text-[#fff0e3] lg:hidden"
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -103,8 +133,8 @@ export default function SiteHeader() {
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-white/10 bg-[linear-gradient(180deg,rgba(31,12,20,0.98),rgba(55,23,35,0.98))] lg:hidden">
-          <div className="mx-auto flex max-w-7xl flex-col px-4 py-4 md:px-8">
+        <div id="mobile-navigation" className="border-t border-white/10 bg-[linear-gradient(180deg,rgba(31,12,20,0.98),rgba(55,23,35,0.98))] lg:hidden">
+          <div className="mx-auto flex max-w-7xl flex-col px-4 py-4 md:px-8" role="dialog" aria-label="Menu mobile">
             {navigation.map((item) => (
               <div key={item.href} className="border-b border-white/6 py-2 last:border-b-0">
                 <Link href={item.href} onClick={() => setMobileOpen(false)} className="block rounded-2xl px-3 py-3 font-medium text-[#fff0e3]">
